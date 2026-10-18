@@ -5,9 +5,10 @@ const formData = {
   message: '',
 };
 
+// alias for formState as referenced in the task specification
+const formState = formData;
+
 const form = document.querySelector('.feedback-form');
-const emailInput = form.elements.email;
-const messageInput = form.elements.message;
 
 populateForm();
 
@@ -33,8 +34,8 @@ function populateForm() {
     formData.email = parsedData.email || '';
     formData.message = parsedData.message || '';
 
-    emailInput.value = formData.email;
-    messageInput.value = formData.message;
+    form.elements.email.value = formData.email;
+    form.elements.message.value = formData.message;
   } catch (error) {
     console.error('Error parsing stored form data:', error);
   }
@@ -48,7 +49,7 @@ function onFormSubmit(event) {
     return;
   }
 
-  console.log(formData);
+  console.log(formState);
 
   localStorage.removeItem(STORAGE_KEY);
   form.reset();
